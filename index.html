@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Major Star Dreadlock Boutique</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header>
+  <div class="nav-container">
+    <div class="logo">
+      <img src="images/logo/logo.png" alt="Majorstar Logo">
+    </div>
+
+    <ul class="navbar">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="store.html">Store</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="price.html">Prices</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero fade-section">
+  <div class="hero-content">
+    <h2>Your Crown,<br>Our Craft</h2>
+    <a href="https://wa.me/27837390394?text=Hi%20Major%20Star%20Dreadlock%20Boutique%2C%20I%27d%20like%20to%20book%20an%20appointment."
+      class="btn" target="_blank" rel="noopener noreferrer">Book Now</a>
+  </div>
+  <img src="images/gallery/IMG-20250915-WA0008.jpg" alt="Smiling woman with dreadlocks" class="hero-img"/>
+</section>
+
+<!-- ===== WELCOME SECTION ===== -->
+<section class="welcome fade-section">
+  <h2>Welcome to Major Star Dreadlock Boutique</h2>
+  <p>We specialize in creating and maintaining beautiful, stylish dreadlocks. Discover our range of professional services and let us take care of your crown.</p>
+</section>
+
+<!-- ===== SERVICES SECTION ===== -->
+<section class="services fade-section">
+  <h2>Our Services</h2>
+  <div class="service-cards">
+    <img src="images/banner/IMG-20250716-WA0044.jpg" alt="Our dreadlock services" />
+  </div>
+</section>
+
+<!-- ===== GALLERY SECTION ===== -->
+<section class="gallery fade-section">
+  <h2>Gallery</h2>
+  <div class="gallery-grid">
+    <img src="images/gallery/IMG-20250915-WA0002.jpg" alt="Client style 1">
+    <img src="images/gallery/IMG-20251117-WA0038.jpg" alt="Client style 2">
+    <img src="images/gallery/IMG-20251117-WA0041.jpg" alt="Client style 3">
+    <img src="images/gallery/IMG-20251117-WA0036.jpg" alt="Client style 4">
+  </div>
+</section>
+
+<!-- ===== FULLSCREEN MODAL ===== -->
+<div id="imageModal" class="modal">
+  <span class="close">&times;</span>
+  <img id="modalImage" class="modal-content" alt="Expanded gallery image">
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="fade-section">
+  <div class="footer-content">
+    <p>Follow us:</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/share/1BsLHctX2v/" target="_blank" rel="noopener">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook" /> Facebook
+      </a>
+      <a href="https://www.tiktok.com/@majorstardreadlocksboutq" target="_blank" rel="noopener">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" alt="TikTok" /> TikTok
+      </a>
+      <a href="https://www.instagram.com/majorstar_dreadlocks_boutique1" target="_blank" rel="noopener">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram" /> Instagram
+      </a>
+    </div>
+    <p>&copy; 2025 Major Star Dreadlock Boutique</p>
+  </div>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+  // ===== Shrink header on scroll =====
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    header.classList.toggle('shrink', window.scrollY > 50);
+  });
+
+  // ===== Fade-in animation on scroll =====
+  const fadeSections = document.querySelectorAll('.fade-section');
+  const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  fadeSections.forEach(section => appearOnScroll.observe(section));
+
+  // ===== Fullscreen Gallery Modal with Swipe =====
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImage");
+  const closeBtn = document.querySelector(".close");
+  const galleryImgs = Array.from(document.querySelectorAll(".gallery-grid img"));
+
+  let currentIndex = 0;
+
+  // Open modal
+  function openModal(index) {
+    currentIndex = index;
+    modal.style.display = "flex";
+    modalImg.src = galleryImgs[currentIndex].src;
+  }
+
+  // Close modal
+  function closeModal() {
+    modal.style.display = "none";
+  }
+
+  // Navigate next/prev
+  function showNext() {
+    currentIndex = (currentIndex + 1) % galleryImgs.length;
+    modalImg.src = galleryImgs[currentIndex].src;
+  }
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + galleryImgs.length) % galleryImgs.length;
+    modalImg.src = galleryImgs[currentIndex].src;
+  }
+
+  // Click events
+  galleryImgs.forEach((img, i) => {
+    img.addEventListener("click", () => openModal(i));
+  });
+
+  closeBtn.addEventListener("click", closeModal);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Swipe detection (mobile)
+  let startX = 0;
+  modal.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
+  modal.addEventListener("touchend", (e) => {
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) showNext(); // Swipe left
+      else showPrev(); // Swipe right
+    }
+  });
+
+  // Arrow key support
+  window.addEventListener("keydown", (e) => {
+    if (modal.style.display === "flex") {
+      if (e.key === "ArrowRight") showNext();
+      if (e.key === "ArrowLeft") showPrev();
+      if (e.key === "Escape") closeModal();
+    }
+  });
+</script>
+
+</body>
+</html>
