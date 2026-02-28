@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gallery - Major Star Dreadlock Boutique</title>
+<link rel="stylesheet" href="css/style4.css" />
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+    <div class="logo">
+        <img src="images/logo/logo.png" alt="Majorstar Logo">
+    </div>
+
+    <ul class="navbar">
+        <li><a href="index.html" >Home</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="gallery.html"class="active">Gallery</a></li>
+        <li><a href="price.html">Prices</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+    </div>
+</header>
+
+
+<main class="gallery-page">
+    <section class="gallery-header">
+        <h2>Our Work</h2>
+        <p>Explore our beautiful dreadlock styles, happy clients, and behind-the-scenes moments at Major Star.</p>
+    </section>
+
+    <section class="gallery-grid">
+        <!-- First 8 real images -->
+        <img src="images/gallery/IMG-20250623-WA0075.jpg" alt="Client 1 with styled dreadlocks">
+        <img src="images/gallery/IMG-20250705-WA0088.jpg" alt="Loc twist style">
+        <img src="images/gallery/IMG-20250625-WA0084.jpg" alt="Client smiling with fresh locs">
+        <img src="images/gallery/IMG-20250711-WA0051.jpg" alt="Wash and retwist service">
+        <img src="images/gallery/IMG-20250706-WA0082.jpg" alt="Beaded locs">
+        <img src="images/gallery/IMG-20250625-WA0048.jpg" alt="Client with dyed locs">
+        <img src="images/gallery/IMG-20250618-WA0023.jpg" alt="Loc bun hairstyle">
+        <img src="images/gallery/IMG-20250618-WA0053.jpg" alt="Salon workspace">
+        <img src="images/gallery/IMG-20250623-WA0075.jpg" alt="Client 1 with styled dreadlocks">
+        <img src="images/gallery/IMG-20251117-WA0028.jpg" alt="Loc twist style">
+        <img src="images/gallery/IMG-20251117-WA0030.jpg" alt="Client smiling with fresh locs">
+        <img src="images/gallery/IMG-20251117-WA0035.jpg" alt="Wash and retwist service">
+        <img src="images/gallery/IMG-20251117-WA0039.jpg" alt="Beaded locs">
+        <img src="images/gallery/IMG-20251117-WA0033.jpg" alt="Client with dyed locs">
+        <img src="images/gallery/IMG-20251117-WA0024.jpg" alt="Loc bun hairstyle">
+        <img src="images/gallery/IMG-20251117-WA0026.jpg" alt="Salon workspace">
+        <img src="images/gallery/IMG-20251117-WA0028.jpg" alt="Loc twist style">
+        <img src="images/gallery/IMG-20251117-WA0029.jpg" alt="Client smiling with fresh locs">
+        <img src="images/gallery/IMG-20251117-WA0020.jpg" alt="Wash and retwist service">
+        <img src="images/gallery/IMG-20251117-WA0022.jpg" alt="Beaded locs">
+        <img src="images/gallery/IMG-20251117-WA0023.jpg" alt="Client with dyed locs">
+    </section>
+</main>
+<div id="imgModal" class="modal">
+<span class="close">&times;</span>
+<img class="modal-content" id="modalImg">
+</div>
+
+
+<footer>
+    <div class="footer-content">
+        <p>Follow us:</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/share/1BsLHctX2v/" target="_blank" rel="noopener">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook" />
+                Facebook
+            </a>
+            <a href="https://www.tiktok.com/@majorstardreadlocksboutq?_t=ZM-8y4hSIzjOCL&_r=1" target="_blank" rel="noopener">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" alt="TikTok" />
+                TikTok
+            </a>
+            <a href="https://www.instagram.com/majorstar_dreadlocks_boutique1?igsh=NjM4YXB1OGNoYjVk" target="_blank" rel="noopener">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram" />
+                Instagram
+            </a>
+        </div>
+        <p>&copy; 2025 Major Star Dreadlock Boutique made by PRIMEDIGITAL</p>
+    </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {   // adjust scroll threshold
+        header.classList.add('shrink');
+    } else {
+        header.classList.remove('shrink');
+    }
+});
+
+// Get modal elements
+const modal = document.getElementById("imgModal");
+const modalImg = document.getElementById("modalImg");
+const closeBtn = document.querySelector(".close");
+
+  // Open modal when image is clicked
+document.querySelectorAll(".gallery-grid img").forEach(img => {
+    img.addEventListener("click", () => {
+    modal.style.display = "block";
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+    });
+});
+
+  // Close modal
+closeBtn.onclick = () => modal.style.display = "none";
+
+  // Close on background click
+modal.onclick = (e) => {
+    if (e.target === modal) {
+    modal.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
+
